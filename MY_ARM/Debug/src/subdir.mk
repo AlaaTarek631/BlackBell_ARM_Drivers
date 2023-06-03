@@ -10,9 +10,9 @@ C_SRCS += \
 ../src/LED_MAT_program.c \
 ../src/NVIC_program.c \
 ../src/RCC_program.c \
+../src/SEGmain.c \
 ../src/STK_program.c \
 ../src/_initialize_hardware.c \
-../src/main.c \
 ../src/stm32f4xx_hal_msp.c 
 
 OBJS += \
@@ -22,9 +22,9 @@ OBJS += \
 ./src/LED_MAT_program.o \
 ./src/NVIC_program.o \
 ./src/RCC_program.o \
+./src/SEGmain.o \
 ./src/STK_program.o \
 ./src/_initialize_hardware.o \
-./src/main.o \
 ./src/stm32f4xx_hal_msp.o 
 
 C_DEPS += \
@@ -34,9 +34,9 @@ C_DEPS += \
 ./src/LED_MAT_program.d \
 ./src/NVIC_program.d \
 ./src/RCC_program.d \
+./src/SEGmain.d \
 ./src/STK_program.d \
 ./src/_initialize_hardware.d \
-./src/main.d \
 ./src/stm32f4xx_hal_msp.d 
 
 

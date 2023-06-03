@@ -54,81 +54,80 @@ void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy
         	            }
         	break;
         case GPIO_PORTB:
-            switch (Copy_u8PinMode)
-                        {
-                            case INPUT:
-                            CLR_BIT(GPIO_B->GPIOx_MODER,Copy_u8PinNumber);
-                            CLR_BIT(GPIO_B->GPIOx_MODER,(Copy_u8PinNumber+1));
-                                switch(Copy_u8ModeType)
-                                {
-                                    case GPIO_PULL_DOWN:
-                                    CLR_BIT(GPIO_B->GPIOx_PUPDR,Copy_u8PinNumber);
-                                    SET_BIT(GPIO_B->GPIOx_PUPDR,(Copy_u8PinNumber+1));
-                                    break;
-                                    case GPIO_PULL_UP:
-                                    CLR_BIT(GPIO_B->GPIOx_PUPDR,(Copy_u8PinNumber+1));
-                                    SET_BIT(GPIO_B->GPIOx_PUPDR,Copy_u8PinNumber);
-                                    break;
-                                    default:
-                                    break;
-                                }
-                            break;
-                            case OUTPUT:
-                            SET_BIT(GPIO_B->GPIOx_MODER,Copy_u8PinNumber);
-                            CLR_BIT(GPIO_B->GPIOx_MODER,(Copy_u8PinNumber+1));
-                                switch(Copy_u8ModeType)
-                                {
-                                    case GPIO_PUSH_PULL:
-                                    CLR_BIT (GPIO_B->GPIOx_OTYPER,Copy_u8PinNumber);
-                                    break;
-                                    case GPIO_OPEN_DRAIN:
-                                    SET_BIT (GPIO_B->GPIOx_OTYPER,Copy_u8PinNumber);
-                                    break;
-                                    default:
-                                    break;
+        	switch (Copy_u8PinMode)
+        	        	            {
+        	        	                case INPUT:
+        	        	                CLR_BIT(GPIO_B->GPIOx_MODER,(Copy_u8PinNumber*2));
+        	        	                CLR_BIT(GPIO_B->GPIOx_MODER,((Copy_u8PinNumber*2)+1));
+        									switch(Copy_u8ModeType)
+        									{
+        										case GPIO_PULL_DOWN:
+        										CLR_BIT(GPIO_B->GPIOx_PUPDR,(Copy_u8PinNumber*2));
+        										SET_BIT(GPIO_B->GPIOx_PUPDR,((Copy_u8PinNumber*2)+1));
+        										break;
+        										case GPIO_PULL_UP:
+        										CLR_BIT(GPIO_B->GPIOx_PUPDR,((Copy_u8PinNumber*2)+1));
+        										SET_BIT(GPIO_B->GPIOx_PUPDR,(Copy_u8PinNumber*2));
+        										break;
+        										default:
+        										break;
+        									}
+        	        	                break;
+        	        	                case OUTPUT:
+        	        	                SET_BIT(GPIO_B->GPIOx_MODER,(Copy_u8PinNumber*2));
+        	        	                CLR_BIT(GPIO_B->GPIOx_MODER,((Copy_u8PinNumber*2)+1));
+        									switch(Copy_u8ModeType)
+        									{
+        										case GPIO_PUSH_PULL:
+        										CLR_BIT (GPIO_B->GPIOx_OTYPER,Copy_u8PinNumber);
+        										break;
+        										case GPIO_OPEN_DRAIN:
+        										SET_BIT (GPIO_B->GPIOx_OTYPER,Copy_u8PinNumber);
+        										break;
+        										default:
+        										break;
 
-                                }
-                            break;
-                        }
-            break;
+        									}
+        	        	                break;
+        	        	            }
+        	        	break;
         case GPIO_PORTC:
-                    switch (Copy_u8PinMode)
-                                {
-                                    case INPUT:
-                                    CLR_BIT(GPIO_C->GPIOx_MODER,Copy_u8PinNumber);
-                                    CLR_BIT(GPIO_C->GPIOx_MODER,((Copy_u8PinNumber+1)));
-                                        switch(Copy_u8ModeType)
-                                        {
-                                            case GPIO_PULL_DOWN:
-                                            CLR_BIT(GPIO_C->GPIOx_PUPDR,Copy_u8PinNumber);
-                                            SET_BIT(GPIO_C->GPIOx_PUPDR,((Copy_u8PinNumber+1)));
-                                            break;
-                                            case GPIO_PULL_UP:
-                                            CLR_BIT(GPIO_C->GPIOx_PUPDR,((Copy_u8PinNumber+1)));
-                                            SET_BIT(GPIO_C->GPIOx_PUPDR,Copy_u8PinNumber);
-                                            break;
-                                            default:
-                                            break;
-                                        }
-                                    break;
-                                    case OUTPUT:
-                                    SET_BIT(GPIO_C->GPIOx_MODER,Copy_u8PinNumber);
-                                    CLR_BIT(GPIO_C->GPIOx_MODER,((Copy_u8PinNumber+1)));
-                                        switch(Copy_u8ModeType)
-                                        {
-                                            case GPIO_PUSH_PULL:
-                                            CLR_BIT (GPIO_C->GPIOx_OTYPER,Copy_u8PinNumber);
-                                            break;
-                                            case GPIO_OPEN_DRAIN:
-                                            SET_BIT (GPIO_C->GPIOx_OTYPER,Copy_u8PinNumber);
-                                            break;
-                                            default:
-                                            break;
+        	switch (Copy_u8PinMode)
+        	        	            {
+        	        	                case INPUT:
+        	        	                CLR_BIT(GPIO_C->GPIOx_MODER,(Copy_u8PinNumber*2));
+        	        	                CLR_BIT(GPIO_C->GPIOx_MODER,((Copy_u8PinNumber*2)+1));
+        									switch(Copy_u8ModeType)
+        									{
+        										case GPIO_PULL_DOWN:
+        										CLR_BIT(GPIO_C->GPIOx_PUPDR,(Copy_u8PinNumber*2));
+        										SET_BIT(GPIO_C->GPIOx_PUPDR,((Copy_u8PinNumber*2)+1));
+        										break;
+        										case GPIO_PULL_UP:
+        										CLR_BIT(GPIO_C->GPIOx_PUPDR,((Copy_u8PinNumber*2)+1));
+        										SET_BIT(GPIO_C->GPIOx_PUPDR,(Copy_u8PinNumber*2));
+        										break;
+        										default:
+        										break;
+        									}
+        	        	                break;
+        	        	                case OUTPUT:
+        	        	                SET_BIT(GPIO_C->GPIOx_MODER,(Copy_u8PinNumber*2));
+        	        	                CLR_BIT(GPIO_C->GPIOx_MODER,((Copy_u8PinNumber*2)+1));
+        									switch(Copy_u8ModeType)
+        									{
+        										case GPIO_PUSH_PULL:
+        										CLR_BIT (GPIO_C->GPIOx_OTYPER,Copy_u8PinNumber);
+        										break;
+        										case GPIO_OPEN_DRAIN:
+        										SET_BIT (GPIO_C->GPIOx_OTYPER,Copy_u8PinNumber);
+        										break;
+        										default:
+        										break;
 
-                                        }
-                                    break;
-                default:
-                break;
+        									}
+        	        	                break;
+
                                 }
         	            }
 }

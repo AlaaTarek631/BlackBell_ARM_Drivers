@@ -60,6 +60,7 @@ void APP_GetFrame(void)
 		MSTK_voidSetSingleInterval(1000000, &APP_TakeAction);
 		//Increment Edge Counter
 		APP_u8EdgeCounter++;
+
 		MGPIO_voidSetPinValue(GPIO_PORTA, GPIO_PIN3, HIGH);
 	}
 }

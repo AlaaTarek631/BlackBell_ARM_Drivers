@@ -12,119 +12,32 @@ compiler: ARM GCC*/
 
 #include "GPIO_interface.h"
 
+
+u8 SEG_ARRAY_VALUES[10][8]= {{1,1,1,1,1,1,0,0},
+						  {0,1,1,0,0,0,0,0},
+						  {1,1,0,1,1,0,1,0},
+						  {1,1,1,1,0,0,1,0},
+						  {0,1,1,0,0,1,1,0},
+						  {1,0,1,1,0,1,1,0},
+						  {1,0,1,1,1,1,1,0},
+						  {1,1,1,1,0,0,0,0},
+						  {1,1,1,1,1,1,1,0},
+						  {1,1,1,1,0,1,1,0}};
+
 void SEG_voidInit(SEGx * SEGobj)
 {
     MGPIO_voidSetPortMode  (SEGobj->SEG_PORT, OUTPUT );
 }
 void SEG_voidDisplayChar(SEGx * SEGobj , u8 Copy_u8CharToDisplay)
 {
-    switch (Copy_u8CharToDisplay)
-    {
-        case 0:
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 1:
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 2:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 3:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 4:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 5:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 6:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 7:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , LOW);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , LOW);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 8:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        case 9:
-            MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , HIGH );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , LOW );
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , HIGH);
-             MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp , LOW );
-        break;
-        default:
-        break;
-
-
-    }
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_a , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][0]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_b , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][1]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_c , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][2]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_d , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][3]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_e , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][4]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_f , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][5]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_g , SEG_ARRAY_VALUES[Copy_u8CharToDisplay][6]);
+	MGPIO_voidSetPinValue           (SEGobj->SEG_PORT,SEGobj->pin_dp, SEG_ARRAY_VALUES[Copy_u8CharToDisplay][7]);
 }
 
 void SEG_voidCLR(SEGx * SEGobj)

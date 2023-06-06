@@ -9,6 +9,9 @@
 #define RCC_GPIOA        0
 #define RCC_GPIOB        1
 #define RCC_GPIOC        2
+#define RCC_SPI1		 12
+
+#define	RCC_USART1		 4		//APB2
 
 
 void MRCC_voidInit(void);

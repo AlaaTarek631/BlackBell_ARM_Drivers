@@ -10,6 +10,10 @@
 int main(void)
 {
 	MSTK_voidInit();
+	MRCC_voidInit();
+	MRCC_voidEnablePeripheralClk(RCC_AHB1, RCC_GPIOA);
+	MRCC_voidEnablePeripheralClk(RCC_AHB1, RCC_GPIOB);
+
 
 
 	u8 Copy_u8Counter;
@@ -60,6 +64,6 @@ int main(void)
 
 		}
 	}
-*/
+
 
 }

@@ -30,11 +30,22 @@
 //choose the input mode
 #define GPIO_PULL_UP   0
 #define GPIO_PULL_DOWN 1
+
 #define INPUT   0
 #define OUTPUT  1
+#define AF  	2
+#define ANALOG 	3
+
 
 #define LOW      0
 #define HIGH     1
+
+#define MGPIO_LOW_SPEED 0
+#define MGPIO_MEDIUM_SPEED 1
+#define MGPIO_HIGH_SPEED 2
+#define MGPIO_VHIGH_SPEED 3
+
+#define SPI_ALTERNATIVE_FUNC 		0b0101
 
 void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy_u8PinMode,  u8 Copy_u8ModeType);
 
@@ -44,5 +55,8 @@ void MGPIO_voidSetPinValue(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy_u8PinVal
 
 u8 MGPIO_u8GetPinValue(u8 Copy_u8PortName, u8 Copy_u8PinNumber);
 
+void MGPIO_voidChangeAltenativeFunction(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8FunctionValue);
+
+void MGPIO_voidSetPinSpeed(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8PinSpeed);
 
 #endif

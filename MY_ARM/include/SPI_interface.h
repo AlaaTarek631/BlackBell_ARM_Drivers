@@ -11,26 +11,10 @@
  * Version	  Date				  Author				  Description
  * v1.0		  30 May, 2023	Abdullah M. Abdullah		  Initial Creation
 *****************************************************************************************/  
-#ifndef SPI_PRIVATE_H
-#define SPI_PRIVATE_H
+#ifndef SPI_INTERFACE_H
+#define SPI_INTERFACE_H
 
-
-
-typedef struct
-{
-    volatile u32 CR1;
-    volatile u32 CR2;
-    volatile u32 SR;
-    volatile u32 DR;
-    volatile u32 CRCPR;
-    volatile u32 RXCRCR;
-    volatile u32 TXCRCR;
-    volatile u32 I2SCFGR;
-    volatile u32 I2SPR;
-}SPI_t;
-
-
-#define     SPI1         ((volatile SPI_t *)0x40013000)
-
+void MSPI1_voidInit(void);
+u8 MSPI_u8TrancieveSynchronous(u8 Copy_u8Data, u8 * Copy_pu8ReceivedData);
 
 #endif

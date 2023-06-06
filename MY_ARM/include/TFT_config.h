@@ -5,32 +5,17 @@
  * Compiler:			GNU ARM-GCC
  * Controller:			STM32F401CCU6 (32-bit Architecture)
  * Processor:			Cortex M4 (32-bit Architecture)
- * Layer:				MCAL Layer
+ * Layer:				HAL Layer
  *****************************************************************************************/
 /*****************************************************************************************
  * Version	  Date				  Author				  Description
  * v1.0		  30 May, 2023	Abdullah M. Abdullah		  Initial Creation
-*****************************************************************************************/  
-#ifndef SPI_PRIVATE_H
-#define SPI_PRIVATE_H
+*****************************************************************************************/
+#ifndef TFT_CONFIG_H
+#define TFT_CONFIG_H
 
-
-
-typedef struct
-{
-    volatile u32 CR1;
-    volatile u32 CR2;
-    volatile u32 SR;
-    volatile u32 DR;
-    volatile u32 CRCPR;
-    volatile u32 RXCRCR;
-    volatile u32 TXCRCR;
-    volatile u32 I2SCFGR;
-    volatile u32 I2SPR;
-}SPI_t;
-
-
-#define     SPI1         ((volatile SPI_t *)0x40013000)
-
+#define HTFT_A0_PORT_PIN		GPIO_PORTA, GPIO_PIN0
+//#define HTFT_CS_PORT_PIN		GPIO_PORTA, GPIO_PIN1
+#define HTFT_RST_PORT_PIN		GPIO_PORTA, GPIO_PIN1
 
 #endif

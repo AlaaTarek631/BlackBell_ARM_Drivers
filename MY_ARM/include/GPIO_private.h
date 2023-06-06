@@ -23,5 +23,6 @@ typedef  struct
 #define GPIO_C     ((volatile GPIO_x *)0x40020800)
 #define GPIO_D     ((volatile GPIO_x *)0x40020C00)
 
+#define	PIN_BITS_OFFSET	2
 
 #endif

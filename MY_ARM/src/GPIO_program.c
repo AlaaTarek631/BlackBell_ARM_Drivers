@@ -10,6 +10,67 @@ compiler version: v1.0
 #include "GPIO_private.h"
 #include "GPIO_config.h"
 
+void MGPIO_voidSetPinSpeed(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8PinSpeed)
+{
+    switch (Copy_u8PortName)
+    {
+    case GPIO_PORTA:
+        switch (Copy_u8PinSpeed)
+        {
+        case MGPIO_LOW_SPEED:
+            GPIO_A->GPIOx_OSPEEDR |= (0b00 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_MEDIUM_SPEED:
+            GPIO_A->GPIOx_OSPEEDR |= (0b01 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_HIGH_SPEED:
+            GPIO_A->GPIOx_OSPEEDR |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_VHIGH_SPEED:
+            GPIO_A->GPIOx_OSPEEDR |= (0b11 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        }
+        break;
+
+    case GPIO_PORTB:
+        switch (Copy_u8PinSpeed)
+        {
+        case MGPIO_LOW_SPEED:
+            GPIO_B->GPIOx_OSPEEDR |= (0b00 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_MEDIUM_SPEED:
+            GPIO_B->GPIOx_OSPEEDR |= (0b01 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_HIGH_SPEED:
+            GPIO_B->GPIOx_OSPEEDR |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_VHIGH_SPEED:
+            GPIO_B->GPIOx_OSPEEDR |= (0b11 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        }
+        break;
+        break;
+
+    case GPIO_PORTC:
+        switch (Copy_u8PinSpeed)
+        {
+        case MGPIO_LOW_SPEED:
+            GPIO_C->GPIOx_OSPEEDR |= (0b00 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_MEDIUM_SPEED:
+            GPIO_C->GPIOx_OSPEEDR |= (0b01 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_HIGH_SPEED:
+            GPIO_C->GPIOx_OSPEEDR |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        case MGPIO_VHIGH_SPEED:
+            GPIO_C->GPIOx_OSPEEDR |= (0b11 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+            break;
+        }
+        break;
+        break;
+    }
+}
 
 void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy_u8PinMode,  u8 Copy_u8ModeType)
 {
@@ -51,6 +112,9 @@ void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy
 
 								}
         	                break;
+        	                case AF:
+        	                	GPIO_A->GPIOx_MODER |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+        	                	break;
         	            }
         	break;
         case GPIO_PORTB:
@@ -89,6 +153,9 @@ void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy
 
         									}
         	        	                break;
+        									case AF:
+        									 GPIO_B->GPIOx_MODER |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+        									  break;
         	        	            }
         	        	break;
         case GPIO_PORTC:
@@ -127,6 +194,9 @@ void MGPIO_voidSetPinDirection_Mode(u8 Copy_u8Port, u8 Copy_u8PinNumber, u8 Copy
 
         									}
         	        	                break;
+        									case AF:
+        									GPIO_C->GPIOx_MODER |= (0b10 << (Copy_u8PinNumber * PIN_BITS_OFFSET));
+        									  break;
 
                                 }
         	            }
@@ -257,4 +327,47 @@ u8 MGPIO_u8GetPinValue(u8 Copy_u8PortName, u8 Copy_u8PinNumber)
 
  
     return Local_u8PinValue;
+}
+
+void MGPIO_voidChangeAltenativeFunction(u8 Copy_u8PortName, u8 Copy_u8PinNumber, u8 Copy_u8FunctionValue)
+{
+	switch (Copy_u8PortName)
+	{
+	    case GPIO_PORTA:
+	    	if (Copy_u8PinNumber<8)
+	    		    		    	{
+	    		    		    		GPIO_A ->GPIOx_AFRL &= ~ (0b1111 << (Copy_u8PinNumber*4));
+	    		    		    		GPIO_A -> GPIOx_AFRL   |= (Copy_u8FunctionValue << (Copy_u8PinNumber*4));
+	    		    		    	}
+	    		    		    	else
+	    		    		    	{
+	    		    		    		GPIO_A -> GPIOx_AFRH &= ~ (0b1111 << ((Copy_u8PinNumber-8)*4));
+	    		    		    		 GPIO_A -> GPIOx_AFRH |= (Copy_u8FunctionValue << ((Copy_u8PinNumber-8)*4));
+	    		    		    	}
+	    	break;
+	    case GPIO_PORTB:
+	    	if (Copy_u8PinNumber<8)
+	    		    	{
+	    		    		GPIO_B ->GPIOx_AFRL &= ~ (0b1111 << (Copy_u8PinNumber*4));
+	    		    		GPIO_B -> GPIOx_AFRL   |= (Copy_u8FunctionValue << (Copy_u8PinNumber*4));
+	    		    	}
+	    		    	else
+	    		    	{
+	    		    		GPIO_B -> GPIOx_AFRH &= ~ (0b1111 << ((Copy_u8PinNumber-8)*4));
+	    		    		 GPIO_B -> GPIOx_AFRH |= (Copy_u8FunctionValue << ((Copy_u8PinNumber-8)*4));
+	    		    	}
+	    	break;
+	    case GPIO_PORTC:
+	    	if (Copy_u8PinNumber<8)
+	    		    		    	{
+	    		    		    		GPIO_C ->GPIOx_AFRL &= ~ (0b1111 << (Copy_u8PinNumber*4));
+	    		    		    		GPIO_C -> GPIOx_AFRL   |= (Copy_u8FunctionValue << (Copy_u8PinNumber*4));
+	    		    		    	}
+	    		    		    	else
+	    		    		    	{
+	    		    		    		GPIO_C -> GPIOx_AFRH &= ~ (0b1111 << ((Copy_u8PinNumber-8)*4));
+	    		    		    		 GPIO_C -> GPIOx_AFRH |= (Copy_u8FunctionValue << ((Copy_u8PinNumber-8)*4));
+	    		    		    	}
+	    	 break;
+	}
 }

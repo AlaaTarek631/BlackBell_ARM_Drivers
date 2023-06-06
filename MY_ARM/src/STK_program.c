@@ -124,25 +124,37 @@ void MSTK_voidResetSysTick(void)
 	STK -> VAL = 0;
 }
 
-void MSTK_voidSetSingleInterval(u32 Copy_u32Ticks , void (*NotificationFunction)(void))
+void MSTK_voidSetSingleInterval(u32 Copy_u32Ticks, void (*NotificationFunction)(void))
 {
+	/*Disable STK*/
+	CLR_BIT(STK -> CTRL, 0);
+	/*Reset STK*/
+	STK -> VAL = 0;
+
+	/*Set PreLoad Value*/
 	STK -> LOAD = Copy_u32Ticks;
+
 	pvCallBackFunction = NotificationFunction;
 	u8IntervalFlag = SINGLE_INTERVAL;
-	/*enable systick interrupt and systick for making sure*/
-	SET_BIT(STK->CTRL,1);
-	SET_BIT(STK->CTRL,0);
 
+	/*Enable STK Interrupt*/
+	SET_BIT(STK -> CTRL, 1);
+	/*Enable STK*/
+	SET_BIT(STK -> CTRL, 0);
 }
 
-void MSTK_voidSetPeriodicInterval(u32 Copy_u32Ticks ,void (*NotificationFunction)(void))
+void MSTK_voidSetPeriodicInterval(u32 Copy_u32Ticks, void (*NotificationFunction)(void))
 {
+	/*Set PreLoad Value*/
 	STK -> LOAD = Copy_u32Ticks;
+
 	pvCallBackFunction = NotificationFunction;
 	u8IntervalFlag = PERIODIC_INTERVAL;
-	/*enable systick interrupt and systick for making sure*/
-		SET_BIT(STK->CTRL,1);
-		SET_BIT(STK->CTRL,0);
+
+	/*Enable STK Interrupt*/
+	SET_BIT(STK -> CTRL, 1);
+	/*Enable STK*/
+	SET_BIT(STK -> CTRL, 0);
 }
 
 

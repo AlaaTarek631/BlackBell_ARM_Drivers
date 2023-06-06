@@ -32,7 +32,6 @@ typedef struct
 
 #define     SINGLE_INTERVAL         0
 #define     PERIODIC_INTERVAL       1
-#define 	NULL  					((void *)0)
 
 
 #endif 

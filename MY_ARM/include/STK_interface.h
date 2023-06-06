@@ -29,7 +29,7 @@ u32 MSTK_u32GetRemainingTime(void);
 void MSTK_voidSetBusyWait(u32 Copy_u32TicksToWait);
 void MSTK_voidSetPreLoadValue(u32 Copy_u8LoadValue);
 void MSTK_voidResetSysTick(void);
-void MSTK_voidSetSingleInterval(u32 Copy_u32Ticks , void (*NotificationFunction)(void));
-void MSTK_voidSetPeriodicInterval(u32 Copy_u32Ticks ,void (*NotificationFunction)(void));
+void MSTK_voidSetSingleInterval(u32 Copy_u32Ticks, void (*NotificationFunction)(void));
+void MSTK_voidSetPeriodicInterval(u32 Copy_u32Ticks, void (*NotificationFunction)(void));
 
 #endif 
